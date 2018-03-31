@@ -1,5 +1,23 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.BanKorteActie>
-@using ContentModels = Umbraco.Web.PublishedContentModels;
-@{
-	Layout = null;
-}
+﻿@using Umbraco.Web
+@using Umbraco.Web.Mvc
+@using Umbraco.Web.PublishedContentModels
+
+@inherits UmbracoViewPage<UmbracoCmsTest.Models.BanKorteActie>
+    @{
+    Layout = null;
+    }
+
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    @Model.CustomKaTitel
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @Model.KaOmschrijving
+                </div>
+            </div>
+        </div>
+    </section>

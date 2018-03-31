@@ -220,6 +220,12 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Terratype, Version=1.0.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Terratype.1.0.16\lib\net45\Terratype.dll</HintPath>
+    </Reference>
+    <Reference Include="Terratype.GoogleMapsV3, Version=1.0.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Terratype.GoogleMapsV3.1.0.16\lib\net45\Terratype.GoogleMapsV3.dll</HintPath>
+    </Reference>
     <Reference Include="TidyNet, Version=1.0.0.0, Culture=neutral">
       <HintPath>..\packages\UmbracoCms.Core.7.10.0\lib\net45\TidyNet.dll</HintPath>
     </Reference>
@@ -255,6 +261,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\Terratype\Css\label.standard.css" />
+    <Content Include="App_Plugins\Terratype\Images\Terratype.png" />
+    <Content Include="App_Plugins\Terratype\Lang\en-us.xml" />
+    <Content Include="App_Plugins\Terratype\readme.txt" />
+    <Content Include="App_Plugins\Terratype\Scripts\terratype.js" />
+    <Content Include="App_Plugins\Terratype\Scripts\terratype.renderer.js" />
+    <Content Include="App_Plugins\Terratype\Views\config.html" />
+    <Content Include="App_Plugins\Terratype\Views\editor.html" />
+    <Content Include="App_Plugins\Terratype\Views\grid.html" />
+    <Content Include="App_Plugins\Terratype\Views\grid.overlay.html" />
+    <Content Include="App_Plugins\Terratype\Views\label.standard.html" />
     <Content Include="config\imageprocessor\security.config" />
     <Content Include="config\imageprocessor\processing.config" />
     <Content Include="config\imageprocessor\cache.config" />
@@ -285,6 +302,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="App_Plugins\Terratype\Views\grid.cshtml" />
+    <Content Include="App_Plugins\Terratype\package.manifest" />
+    <Content Include="_Learned\Learned.txt" />
     <None Include="packages.config" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -310,6 +330,7 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\BanContact.cshtml" />
     <Content Include="Views\BanNieuws.cshtml" />
+    <Content Include="Views\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -354,9 +375,9 @@
       <LastGenOutput>BanBuilder.generated.cs</LastGenOutput>
     </Compile>
     <Compile Include="Models\BanBuilder.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>BanBuilder.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\BanContact.generated.cs">
       <DependentUpon>BanBuilder.cs</DependentUpon>
@@ -364,6 +385,7 @@
     <Compile Include="Models\BanContactModel.cs">
       <Generator>UmbracoModelsBuilder</Generator>
     </Compile>
+    <Compile Include="Models\BanKorteActie.cs" />
     <Compile Include="Models\BanKorteActie.generated.cs">
       <DependentUpon>BanBuilder.cs</DependentUpon>
     </Compile>

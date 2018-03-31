@@ -1,0 +1,29 @@
+﻿Models
+
+https://tcmorris.net/blog/getting-started-with-models-builder/
+https://24days.in/umbraco-cms/2016/getting-started-with-modelsbuilder/
+LiveModels
+DocumentType maakt models aan. 
+Initieel in de install folder App_Data/Models/all.generated.cs en models.generated.cs
+Runtime gegenereerd indien nieuwe ModelType aangemaakt of bestaande gewijzigd
+In web.config setting: <add key="Umbraco.ModelsBuilder.ModelsMode" value="PureLive" />
+
+DLL models
+<add key="Umbraco.ModelsBuilder.ModelsMode" value="DLL" /> of LiveDLL
+Models worden in een DLL gegenereerd, zodat een referentie naar gelegd kan worden.
+IntelliSense in de View
+Models zijn hiermeer ook beschikbaar in custom Controllers
+
+AppData models
+<add key="Umbraco.ModelsBuilder.ModelsMode" value="AppData" /> of LiveAppData
+Models worden in ~/App_Data/Models gegenereerd
+IntelliSense in de View
+
+API models
+<add key="Umbraco.ModelsBuilder.ModelsMode" value="Nothing" /> of setting geheel verwijderen
+Installeer extensie Modelsbuilder Custom Tools en package umbraco.modelsbuilder.api
+Stel Builder in via Tools -> Options -> Umbraco
+Creeer lege class en set in properties CustomTool op UmbracoModelsBuilder. Run custom tool
+Models worden in legeClass.cs gegenereerd. Vanaf hier uitreidbaar met nieuwe partial class met custom props
+IntelliSense in de View
+

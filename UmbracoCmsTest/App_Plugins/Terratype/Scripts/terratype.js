@@ -1,11 +1,79 @@
 ﻿(function (root) {
 
+	Number.isInteger = Number.isInteger || function (value) {
+		return typeof value === "number" &&
+			isFinite(value) &&
+			Math.floor(value) === value;
+	};
+
     var packageName = 'Terratype';
 
     if (!root.terratype) {
         root.terratype = {
             loading: false,
-            providers: {}
+            providers: {},
+            event: {
+            	events: [],
+            	register: function (id, name, scope, object, func) {
+            		//gm.originalConsole.log("Register " + name + ":" + id);
+            		root.terratype.event.events.push({
+            			id: id,
+            			name: name,
+            			func: func,
+            			scope: scope,
+            			object: object
+            		});
+            	},
+            	cancel: function (id) {
+            		var newEvents = [];
+            		angular.forEach(root.terratype.event.events, function (e, i) {
+            			if (e.id != id) {
+            				newEvents.push(e);
+            			} else {
+            				//gm.originalConsole.log("Cancel " + e.name + ":" + e.id);
+            			}
+            		});
+            		root.terratype.event.events = newEvents;
+            	},
+            	broadcast: function (name) {
+            		//var log = 'Broadcast ' + name + ' ';
+            		angular.forEach(root.terratype.event.events, function (e, i) {
+            			if (e.name == name) {
+            				//log += e.id + ',';
+            				e.func.call(e.scope, e.object);
+            			}
+            		});
+            		//gm.originalConsole.log(log);
+            	},
+            	broadcastSingle: function (name, counter) {
+            		var loop = 0;
+            		while (loop != 2 && root.terratype.event.events.length != 0) {
+            			if (counter >= root.terratype.event.events.length) {
+            				counter = 0;
+            				loop++;
+            			}
+
+            			var e = root.terratype.event.events[counter++];
+            			if (e.name == name) {
+            				e.func.call(e.scope, e.object);
+            				return counter;
+            			}
+            		}
+            		return null;
+            	},
+            	present: function (id) {
+            		if (id) {
+            			var count = 0;
+            			angular.forEach(root.terratype.event.events, function (e, i) {
+            				if (e.id != id) {
+            					count++;
+            				}
+            			});
+            			return count;
+            		}
+            		return root.terratype.event.events.length;
+            	}
+            }
         };
     }
 
@@ -75,7 +143,7 @@
         }
     }]);
 
-    //  Don't allow Enter Key to bubble up to submit form
+    //  Don't allow Enter Key to bubble up to submit form - INVESTIGATE: Maybe can use 'prevent-default' directive instead
     angular.module('umbraco.directives').directive('terratypeIgnoreEnterKey', ['$rootScope', function ($rootScope) {
         return function (scope, element, attrs) {
             element.on("keydown keypress", function (event) {
@@ -86,8 +154,8 @@
         };
     }]);
 
-    angular.module('umbraco').controller('terratype', ['$scope', '$timeout', '$http', 'localizationService',
-        function ($scope, $timeout, $http, localizationService) {
+	angular.module('umbraco').controller('terratype', ['$scope', '$timeout', '$http', 'localizationService', 
+		function ($scope, $timeout, $http, localizationService) {
         $scope.config = null;
         $scope.store = null;
         $scope.vm = null;
@@ -123,11 +191,11 @@
             }
         }
 
-        $scope.terratype = {
+		$scope.terratype = {
             urlProvider: function (id, file, cache) {
                 var r = Umbraco.Sys.ServerVariables.umbracoSettings.appPluginsPath + '/' + id + '/' + file;
                 if (cache == true) {
-                    r += '?cache=1.0.13';
+                    r += '?cache=1.0.16';
                 }
                 return r;
             },
@@ -339,7 +407,7 @@
                 if ($scope.vm().configgering) {
                     $scope.store().position.precision = $scope.vm().position.precision;
                 }
-                $scope.vm().provider.events.setCoordinateSystem();
+				$scope.vm().provider.events.setCoordinateSystem();
             },
             setLabel: function (id) {
                 if (id) {
@@ -405,7 +473,7 @@
                 return root.location.protocol + '//' + root.location.hostname + (root.location.port ? ':' + root.location.port : '') + url;
             },
             iconCustom: function () {
-                $scope.config().icon.id = $scope.vm().icon.predefine[0].id;
+                $scope.config().icon.id = $scope.terratype.icon.predefine[0].id;
                 if (!$scope.vm().icon.anchor.horizontal.isManual) {
                     switch ($scope.vm().icon.anchor.horizontal.automatic) {
                         case 'left':
@@ -900,14 +968,44 @@
                     }, 150);
                 });
             },
+            isCsv: function (csv) {
+            	var commaCount = 0;
+            	var decimalPointCount = 0;
+            	for (var i = 0, len = csv.length; i != len; i++) {
+            		var c = csv.charAt(i);
+            		if (c == ',') {
+            			commaCount++;
+            		} else if (c == '.') {
+            			decimalPointCount++;
+            		} else if (c < '0' || c > '9') {
+            			return false;
+            		}
+            	}
+            	return commaCount == 2 && decimalPointCount <= 2;
+            },
+            convertCsv: function (csv) {
+            	var args = csv.split(',');
+            	var zoom = parseInt(args[2]);
+            	return {
+            		zoom: zoom,
+            		position: {
+            			id: 'WGS84',
+            			datum: args[0] + ',' + args[1]
+            		}
+            	}
+            },
             initEditor: function (completed) {
                 $scope.vm = function () {
                     return $scope.viewmodel;
                 }
                 $scope.vm().error = false;
                 try {
-                    if (typeof ($scope.model.value) === 'string') {
-                        $scope.model.value = ($scope.model.value != '') ? JSON.parse($scope.model.value) : null;
+                	if (typeof ($scope.model.value) === 'string') {
+                		if ($scope.terratype.isCsv($scope.model.value)) {
+                			$scope.model.value = convertCsv($scope.model.value);
+                		} else {
+                			$scope.model.value = ($scope.model.value != '') ? JSON.parse($scope.model.value) : null;
+                		}
                     }
                     if (!$scope.model.value) {
                         $scope.model.value = {};
@@ -1319,7 +1417,7 @@
                     return;
                 }
                 var editor = $scope.rte.getEditor();
-                if (editor == null) {
+                if (editor == null || editor.getContentAreaContainer() == null) {
                     return;
                 }
                 clearInterval(timer);
