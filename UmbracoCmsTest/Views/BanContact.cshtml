@@ -1,0 +1,12 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+}
+
+<div class="container">
+    <!--RendeForm corresponds with RenderForm() in BanContactSurfaceController-->
+    @{ Html.RenderAction("RenderForm","BanContactSurface"); }
+</div>
+
+@* the fun starts here *@
+

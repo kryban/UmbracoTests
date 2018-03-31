@@ -1,0 +1,28 @@
+﻿@inherits UmbracoViewPage<UmbracoCmsTest.Models.BanContactModel>
+
+<!-- Create the form now -->
+<!-- firsr arg represents an Action method in the correspobding controller-->
+<!-- in this case SubmitFrom in BanContactSurfaceController -->
+<!-- second arg represents the name of the servicecontroller without the postfix controller-->
+@using (Html.BeginUmbracoForm("SubmiForm", "BanContactSurface", FormMethod.Post))
+{
+    <!-- corresponds with [ValidateAntiForgeryToken] in the controller -->
+    @Html.AntiForgeryToken()
+
+    <!-- if there are errors, show them in the form-->
+    @Html.ValidationSummary();
+
+    @Html.LabelFor(m => m.FirstName);
+    @Html.TextBoxFor(m => m.FirstName);
+
+    @Html.LabelFor(m => m.LastName);
+    @Html.TextBoxFor(m => m.LastName);
+
+    @Html.LabelFor(m => m.Email);
+    @Html.TextBoxFor(m => m.Email);
+
+    @Html.LabelFor(m => m.Message);
+    @Html.TextBoxFor(m => m.Message);
+
+    <button>SubmitBanContact</button>
+};
