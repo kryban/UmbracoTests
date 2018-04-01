@@ -38,11 +38,26 @@ In sommige gevallen kan gebruik gemaakt worden van een woordenboek.
 Zoals bijvoorbeeld bij teksten van knoppen. 
 In plaats van concrete strings, kan je de waarde uit een e Dictionary halen met: 
  @Umbraco.GetDictionaryValue("Submit")
+----------------------------------
+Packages: 
+Is een manier om plugins te installeren. 
 
+Maar ook een manier om data en functioanliteit tussen twee umbraco installatie te distribueren.
+----------------------------------
+Marcos
+Hergebruik van bestaande functionaliteit. Kan in een rich text venster aan een page toegevoegd worden.
 ----------------------------------
 Datatypes
+Kunnen de onderdelen van een document type gedefinieerd worden. 
+Zo ook bijvoorbeeld een Rich Text venster, die naar eigen wensen geconfigureerd kan worden
+----------------------------------
+Full tekst search
 
-
+----------------------------------
+----------------------------------
+----------------------------------
+----------------------------------
+----------------------------------
 Vragen:
 - Kan afgedwongen worden dat pages slechts 1x aangemaakt worden?
 
