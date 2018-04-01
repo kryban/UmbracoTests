@@ -331,6 +331,17 @@
     <Content Include="Views\BanContact.cshtml" />
     <Content Include="Views\BanNieuws.cshtml" />
     <Content Include="Views\Home.cshtml" />
+    <Content Include="Views\Products.cshtml" />
+    <Content Include="Views\BanKorteActie.cshtml" />
+    <Content Include="Views\Master.cshtml" />
+    <Content Include="Views\Blog.cshtml" />
+    <Content Include="Views\Blogpost.cshtml" />
+    <Content Include="Views\Contact.cshtml" />
+    <Content Include="Views\ContentPage.cshtml" />
+    <Content Include="Views\Eventjes.cshtml" />
+    <Content Include="Views\People.cshtml" />
+    <Content Include="Views\Person.cshtml" />
+    <Content Include="Views\Product.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

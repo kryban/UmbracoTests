@@ -912,6 +912,9 @@ Umbraco.Core.Persistence.Mappers.ServerRegistrationMapper, Umbraco.Core, Version
 Umbraco.Core.Persistence.Mappers.UmbracoEntityMapper, Umbraco.Core, Version=1.0.6659.16870, Culture=neutral, PublicKeyToken=null
 Umbraco.Core.Persistence.Mappers.UserMapper, Umbraco.Core, Version=1.0.6659.16870, Culture=neutral, PublicKeyToken=null
 
+Umbraco.Core.Deploy.IServiceConnector
+
+
 umbraco.interfaces.ICacheRefresher
 
 Umbraco.Web.Cache.ApplicationCacheRefresher, umbraco, Version=1.0.6659.16878, Culture=neutral, PublicKeyToken=null
@@ -935,4 +938,9 @@ Umbraco.Web.Cache.TemplateCacheRefresher, umbraco, Version=1.0.6659.16878, Cultu
 Umbraco.Web.Cache.UnpublishedPageCacheRefresher, umbraco, Version=1.0.6659.16878, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Cache.UserCacheRefresher, umbraco, Version=1.0.6659.16878, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Cache.UserGroupPermissionsCacheRefresher, umbraco, Version=1.0.6659.16878, Culture=neutral, PublicKeyToken=null
+
+umbraco.cms.businesslogic.macro.IMacroEngine
+
+umbraco.MacroEngines.RazorMacroEngine, umbraco.MacroEngines, Version=1.0.6659.16881, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.Macros.PartialViewMacroEngine, umbraco, Version=1.0.6659.16878, Culture=neutral, PublicKeyToken=null
 

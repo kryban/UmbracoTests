@@ -1,4 +1,4 @@
-﻿Models
+﻿Document Types / Models
 
 https://tcmorris.net/blog/getting-started-with-models-builder/
 https://24days.in/umbraco-cms/2016/getting-started-with-modelsbuilder/
@@ -11,6 +11,7 @@ In web.config setting: <add key="Umbraco.ModelsBuilder.ModelsMode" value="PureLi
 DLL models
 <add key="Umbraco.ModelsBuilder.ModelsMode" value="DLL" /> of LiveDLL
 Models worden in een DLL gegenereerd, zodat een referentie naar gelegd kan worden.
+gegenereerde DLL: PublishedContentModels.dll
 IntelliSense in de View
 Models zijn hiermeer ook beschikbaar in custom Controllers
 
@@ -26,4 +27,6 @@ Stel Builder in via Tools -> Options -> Umbraco
 Creeer lege class en set in properties CustomTool op UmbracoModelsBuilder. Run custom tool
 Models worden in legeClass.cs gegenereerd. Vanaf hier uitreidbaar met nieuwe partial class met custom props
 IntelliSense in de View
-
+----------------------------------
+Talen
+Settings --> Languages
