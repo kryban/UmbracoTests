@@ -381,6 +381,9 @@
   <ItemGroup>
     <Compile Include="Controllers\BanContactSurfaceController.cs" />
     <Compile Include="Controllers\BanNieuwsSurfaceController.cs" />
+    <Compile Include="Models\BanActies.generated.cs">
+      <DependentUpon>BanBuilder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\BanBuilder.cs">
       <Generator>UmbracoModelsBuilder</Generator>
       <LastGenOutput>BanBuilder.generated.cs</LastGenOutput>

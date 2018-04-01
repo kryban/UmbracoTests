@@ -5,8 +5,10 @@
 @inherits UmbracoViewPage<UmbracoCmsTest.Models.BanKorteActie>
 
     @{
-    Layout = null;
+    Layout = "Master.cshtml";
     }
+    
+    @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 
     <section class="section">
         <div class="container">

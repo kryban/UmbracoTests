@@ -27,6 +27,22 @@ Stel Builder in via Tools -> Options -> Umbraco
 Creeer lege class en set in properties CustomTool op UmbracoModelsBuilder. Run custom tool
 Models worden in legeClass.cs gegenereerd. Vanaf hier uitreidbaar met nieuwe partial class met custom props
 IntelliSense in de View
+
+Nadeel: Indien een nieuwe document type is toegevegd, dan moeten worden de Models pas herkend
+als ze gegenereerd zijn. Dit moet handmatig gebeuren, waarna opnieuw gebuil en gedployed moet worden
 ----------------------------------
 Talen
 Settings --> Languages
+Kopieen van vertaalde pagina's. 
+In sommige gevallen kan gebruik gemaakt worden van een woordenboek. 
+Zoals bijvoorbeeld bij teksten van knoppen. 
+In plaats van concrete strings, kan je de waarde uit een e Dictionary halen met: 
+ @Umbraco.GetDictionaryValue("Submit")
+
+----------------------------------
+Datatypes
+
+
+Vragen:
+- Kan afgedwongen worden dat pages slechts 1x aangemaakt worden?
+

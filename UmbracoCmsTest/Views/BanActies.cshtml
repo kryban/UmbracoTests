@@ -1,0 +1,34 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.BanActies>
+@using ContentModels = UmbracoCmsTest.Models; @*Umbraco.Web.PublishedContentModels;*@
+@{
+	Layout = "Master.cshtml";
+}
+
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+    
+    <section class="section">
+    <div class="container">
+        <div class="col-md-3">
+            <nav class="nav-bar nav-bar--list">
+                @Html.Partial("~/Views/Partials/Navigation/SubNavigation.cshtml")
+            </nav>
+        </div>
+        <div class="col-md-9">
+            <article>
+                @Model.TekstInhoud
+            </article>
+        </div>
+    </div>
+</section>
+    
+@*
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    @Model.TekstInhoud
+                </div>
+            </div>
+        </div>
+    </section>
+*@
