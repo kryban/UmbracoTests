@@ -57,14 +57,26 @@ Kunnen de onderdelen van een document type gedefinieerd worden.
 Zo ook bijvoorbeeld een Rich Text venster, die naar eigen wensen geconfigureerd kan worden
 ----------------------------------
 Full tekst search
-Beschikbaar als package. Niet uit kunnen testen, omdat versie  niet meer startte na installatie. 
+Beschikbaar als package. 
+Niet uit kunnen testen, omdat versie  niet meer startte na installatie. 
 
+---------------------------------- 
+Database:
+Connections string vastgelegd in web.config.
+Vanuit debug database in ..<Root>\App_Data\Umbraco.sdf
 ----------------------------------
+Dashboard
+Is volledig aan te passen.
 ----------------------------------
+Route Hijacking
+Met Route Hijacking stuurt Umbraco data niet naar IIS terug, maar naar een zelf gecreerde C# controller.
+Hierdoor is het mogelijk om eigen code te runnen voordat een pagina gerendered wordt.
 ----------------------------------
-----------------------------------
+IPublishedContent 
+Interface wat elke content object implementeert.
 ----------------------------------
 Vragen:
 - Kan afgedwongen worden dat pages slechts 1x aangemaakt worden?
 - Hoe backup te maken?
-
+- Models van metadata voorzien? (Data type checkbox list an, maar anders ?)
+- Query van content ?
